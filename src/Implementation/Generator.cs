@@ -4,6 +4,7 @@ using System.Globalization;
 using Genyman.Core;
 using System.IO;
 using System.Linq;
+using Genyman.Core.Helpers;
 using ServiceStack;
 using SkiaSharp;
 using SKSvg = SkiaSharp.Extended.Svg.SKSvg;
@@ -139,9 +140,9 @@ namespace Stefandevo.Genyman.XamarinAssets.Implementation
 						case Platforms.UWP:
 							configs.AddRange(new[]
 							{
-								new Output() {Ratio = 1.0, Path = "scale-100"},
-								new Output() {Ratio = 2, Path = "scale-200"},
-								new Output() {Ratio = 4, Path = "scale-400"},
+								new Output() {Ratio = 1.0, Suffix = ".scale-100"},
+								new Output() {Ratio = 2, Suffix = ".scale-200"},
+								new Output() {Ratio = 4, Suffix = ".scale-400"},
 							});
 							break;
 						default:
@@ -152,17 +153,17 @@ namespace Stefandevo.Genyman.XamarinAssets.Implementation
 					{
 						var destinationFolder = "Resources";
 						if (platform.Type == Platforms.UWP)
-							destinationFolder = "Assets/Images";
+							destinationFolder = "Assets";
 						var destinationFile = Path.Combine(WorkingDirectory, platform.ProjectPath, destinationFolder);
+						
 						if (string.IsNullOrEmpty(config.Path))
-							destinationFile = Path.Combine(destinationFile, $"{asset.File.Replace(".svg", "")}{config.Suffix}.png");
+							destinationFile = Path.Combine(destinationFile, $"{asset.GetSafeFile().Replace(".svg", "")}{config.Suffix}.png");
 						else
-							destinationFile = Path.Combine(destinationFile, config.Path, $"{asset.File.Replace(".svg", ".png")}");
-
+							destinationFile = Path.Combine(destinationFile, config.Path, $"{asset.GetSafeFile().Replace(".svg", ".png")}");
+						
 						var destinationPath = new FileInfo(destinationFile);
 						if (!Directory.Exists(destinationPath.DirectoryName))
 							Directory.CreateDirectory(destinationPath.DirectoryName);
-
 
 						var resizeRatio = config.Ratio;
 
@@ -193,7 +194,19 @@ namespace Stefandevo.Genyman.XamarinAssets.Implementation
 							data.SaveTo(fs);
 						}
 
-						//TODO: add files to projects
+						var platformProjectFolder = Path.Combine(WorkingDirectory, platform.ProjectPath);
+						switch (platform.Type)
+						{
+							case Platforms.iOS:
+								platformProjectFolder.AddXamarinIosResource(destinationFile);
+								break;
+							case Platforms.Android:
+								platformProjectFolder.AddXamarinAndroidResource(destinationFile);
+								break;
+							case Platforms.UWP:
+								platformProjectFolder.AddXamarinUWPResource(destinationFile);
+								break;
+						}
 					}
 				}
 			}

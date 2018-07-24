@@ -29,6 +29,16 @@ namespace Stefandevo.Genyman.XamarinAssets.Implementation
 	{
 		public string File { get; set; }
 		public string Size { get; set; }
+
+		internal string GetSafeFile()
+		{
+			// cannot contain - in Android resources
+			var result = File.Replace("-", "_"); //more?
+			// cannot start with number in Android resources
+			if (char.IsDigit(result[0]))
+				result = "_" + result;
+			return result;
+		}
 	}
 	
 	public class AssetDefaultClass

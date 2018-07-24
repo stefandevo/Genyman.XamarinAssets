@@ -16,6 +16,8 @@ namespace XamarinAssetsApp.iOS
 		{
 			base.ViewDidLoad();
 
+			MyImage.Image = new UIImage("shopping_basket");
+
 			// Perform any additional setup after loading the view, typically from a nib.
 			Button.AccessibilityIdentifier = "myButton";
 			Button.TouchUpInside += delegate

@@ -20,6 +20,9 @@ namespace XamarinAssetsApp.Droid
 			// and attach an event to it
 			Button button = FindViewById<Button>(Resource.Id.myButton);
 
+			ImageView imageView = FindViewById<ImageView>(Resource.Id.myImage);
+			imageView.SetImageResource(Resource.Drawable.shopping_basket);
+
 			button.Click += delegate { button.Text = $"{count++} clicks!"; };
 		}
 	}

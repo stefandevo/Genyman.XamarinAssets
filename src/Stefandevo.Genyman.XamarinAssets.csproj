@@ -22,4 +22,7 @@
 		</Content>
 		<Folder Include="Templates" />
 	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\genyman\core\src\Genyman.Core.csproj" />
+	</ItemGroup>
 </Project>
