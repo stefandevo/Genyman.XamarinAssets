@@ -41,11 +41,11 @@ A sample configuration file:
         "assets": [
             {
                 "file": "house.svg",
-				"size": "32x32"
+		"size": "32x32"
             },
             {
                 "file": "vlc.svg",
-				"size": "64x64"
+		"size": "64x64"
             }
         ]
     }
