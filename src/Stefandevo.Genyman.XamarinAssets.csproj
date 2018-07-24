@@ -12,7 +12,7 @@
 		<PackageIconUrl>https://raw.githubusercontent.com/genyman/genyman/master/graphics/genyman64.png</PackageIconUrl>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Genyman.Core" Version="0.0.21" />
+		<PackageReference Include="Genyman.Core" Version="0.0.22" />
 		<PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
 	</ItemGroup>
 	<ItemGroup>
@@ -21,8 +21,5 @@
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Folder Include="Templates" />
-	</ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\..\..\genyman\core\src\Genyman.Core.csproj" />
 	</ItemGroup>
 </Project>
