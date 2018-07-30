@@ -5,8 +5,8 @@
 		<PackAsTool>true</PackAsTool>
 		<TargetFramework>netcoreapp2.1</TargetFramework>
 		<AssemblyName>Stefandevo.Genyman.XamarinAssets</AssemblyName>
-		<Version>1.0.0</Version>
-		<Description>Based upon a single SVG source create all assets for iOS, Android, ... with a Genyman generator</Description>
+		<Version>1.0.1</Version>
+		<Description>Based upon a single SVG source create all assets for iOS, Android, UWP</Description>
 		<PackageTags>Genyman</PackageTags>
 		<IncludeContentInPack>false</IncludeContentInPack>
 		<PackageIconUrl>https://raw.githubusercontent.com/genyman/genyman/master/graphics/genyman64.png</PackageIconUrl>

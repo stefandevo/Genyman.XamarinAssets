@@ -141,6 +141,8 @@ namespace Stefandevo.Genyman.XamarinAssets.Implementation
 							configs.AddRange(new[]
 							{
 								new Output() {Ratio = 1.0, Suffix = ".scale-100"},
+								new Output() {Ratio = 1.25, Suffix = ".scale-125"},
+								new Output() {Ratio = 1.50, Suffix = ".scale-150"},
 								new Output() {Ratio = 2, Suffix = ".scale-200"},
 								new Output() {Ratio = 4, Suffix = ".scale-400"},
 							});
@@ -155,12 +157,12 @@ namespace Stefandevo.Genyman.XamarinAssets.Implementation
 						if (platform.Type == Platforms.UWP)
 							destinationFolder = "Assets";
 						var destinationFile = Path.Combine(WorkingDirectory, platform.ProjectPath, destinationFolder);
-						
+
 						if (string.IsNullOrEmpty(config.Path))
 							destinationFile = Path.Combine(destinationFile, $"{asset.GetSafeFile().Replace(".svg", "")}{config.Suffix}.png");
 						else
 							destinationFile = Path.Combine(destinationFile, config.Path, $"{asset.GetSafeFile().Replace(".svg", ".png")}");
-						
+
 						var destinationPath = new FileInfo(destinationFile);
 						if (!Directory.Exists(destinationPath.DirectoryName))
 							Directory.CreateDirectory(destinationPath.DirectoryName);
