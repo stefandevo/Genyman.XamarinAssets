@@ -27,7 +27,10 @@ A sample configuration file:
             },
             {
                 "type": "Android",
-                "projectPath": "XamarinAssetsApp/Droid"
+                "projectPath": "XamarinAssetsApp/Droid",
+                "androidOptions": {
+                    "assetFolderPrefix": "mipmap"
+                }
             },
             {
                 "type": "UWP",
@@ -59,6 +62,7 @@ Configuration options:
 - `platforms`:
   - `type`: can be `iOS`, `Android` or `UWP`
   - `projectPath`: relative path towards the project file of the platform (do not include the project file itself!)
+  - `androidOptions`: extra options for Android; `assetFolderPrefix` can be `mipmap` (default) or `drawable`
 - `assetDefault`:
   - `pattern`: you can use a file pattern to include for example all files in the `assetsPath`, or you can leave this blank to specify individual files
   - `size`: in the format `100x100` specifying `width` x `height` as default size for base resolution; can be specified individually
