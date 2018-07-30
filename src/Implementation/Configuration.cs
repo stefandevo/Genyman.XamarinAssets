@@ -16,6 +16,7 @@ namespace Stefandevo.Genyman.XamarinAssets.Implementation
 	{
 		public Platforms Type { get; set; }
 		public string ProjectPath { get; set; }
+		public AndroidOptions AndroidOptions { get; set; }
 	}
 
 	public enum Platforms
@@ -45,5 +46,10 @@ namespace Stefandevo.Genyman.XamarinAssets.Implementation
 	{
 		public string Pattern { get; set; }
 		public string Size { get; set; }
+	}
+	
+	public class AndroidOptions
+	{
+		public string AssetFolderPrefix { get; set; }
 	}
 }		

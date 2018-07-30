@@ -128,15 +128,21 @@ namespace Stefandevo.Genyman.XamarinAssets.Implementation
 							});
 							break;
 						case Platforms.Android:
+						{
+							var folderPrefix = "mipmap";
+							if (platform.AndroidOptions != null && !string.IsNullOrEmpty(platform.AndroidOptions.AssetFolderPrefix))
+								folderPrefix = platform.AndroidOptions.AssetFolderPrefix;
+
 							configs.AddRange(new[]
 							{
-								new Output() {Ratio = 1.0, Path = "drawable-mdpi"},
-								new Output() {Ratio = 1.5, Path = "drawable-hdpi"},
-								new Output() {Ratio = 2, Path = "drawable-xhdpi"},
-								new Output() {Ratio = 3, Path = "drawable-xxhdpi"},
-								new Output() {Ratio = 4, Path = "drawable-xxxhdpi"},
+								new Output() {Ratio = 1.0, Path = $"{folderPrefix}-mdpi"},
+								new Output() {Ratio = 1.5, Path = $"{folderPrefix}-hdpi"},
+								new Output() {Ratio = 2, Path = $"{folderPrefix}-xhdpi"},
+								new Output() {Ratio = 3, Path = $"{folderPrefix}-xxhdpi"},
+								new Output() {Ratio = 4, Path = $"{folderPrefix}-xxxhdpi"},
 							});
 							break;
+						}
 						case Platforms.UWP:
 							configs.AddRange(new[]
 							{

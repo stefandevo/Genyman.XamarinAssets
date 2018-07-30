@@ -17,7 +17,11 @@ namespace Stefandevo.Genyman.XamarinAssets.Implementation
 				new PlatformClass()
 				{
 					Type = Implementation.Platforms.Android,
-					ProjectPath = "YourProject.Droid"
+					ProjectPath = "YourProject.Droid",
+					AndroidOptions = new AndroidOptions()
+					{
+						AssetFolderPrefix = "mipmap"
+					}
 				}
 			};
 			Assets = new List<AssetClass>()
