@@ -5,13 +5,14 @@ using Genyman.Core;
 using System.IO;
 using System.Linq;
 using Genyman.Core.Helpers;
+using Genyman.Core.MSBuild;
 using ServiceStack;
 using SkiaSharp;
 using SKSvg = SkiaSharp.Extended.Svg.SKSvg;
 
 namespace Stefandevo.Genyman.XamarinAssets.Implementation
 {
-	public class Generator : GenymanGenerator<Configuration>
+	internal class Generator : GenymanGenerator<Configuration>
 	{
 		public override void Execute()
 		{
@@ -130,8 +131,8 @@ namespace Stefandevo.Genyman.XamarinAssets.Implementation
 						case Platforms.Android:
 						{
 							var folderPrefix = "mipmap";
-							if (platform.AndroidOptions != null && !string.IsNullOrEmpty(platform.AndroidOptions.AssetFolderPrefix))
-								folderPrefix = platform.AndroidOptions.AssetFolderPrefix;
+							if (platform.AndroidOptions != null && !string.IsNullOrEmpty(platform.AndroidOptions.AssetFolderPrefix.ToString()))
+								folderPrefix = platform.AndroidOptions.AssetFolderPrefix.ToString();
 
 							configs.AddRange(new[]
 							{
@@ -202,17 +203,16 @@ namespace Stefandevo.Genyman.XamarinAssets.Implementation
 							data.SaveTo(fs);
 						}
 
-						var platformProjectFolder = Path.Combine(WorkingDirectory, platform.ProjectPath);
 						switch (platform.Type)
 						{
 							case Platforms.iOS:
-								platformProjectFolder.AddXamarinIosResource(destinationFile);
+								FluentMSBuild.Use(destinationFile).WithBuildAction(BuildAction.BundleResource).AddToProject();
 								break;
 							case Platforms.Android:
-								platformProjectFolder.AddXamarinAndroidResource(destinationFile);
+								FluentMSBuild.Use(destinationFile).WithBuildAction(BuildAction.AndroidResource).AddToProject();
 								break;
 							case Platforms.UWP:
-								platformProjectFolder.AddXamarinUWPResource(destinationFile);
+								FluentMSBuild.Use(destinationFile).WithBuildAction(BuildAction.Content).AddToProject();
 								break;
 						}
 					}

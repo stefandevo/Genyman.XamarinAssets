@@ -56,21 +56,63 @@ A sample configuration file:
 
 ```
 
-Configuration options:
+```
+Class: Configuration
+--------------------
 
-- `assetsPath`: relative path where the configuration is towards where the svg files are.
-- `platforms`:
-  - `type`: can be `iOS`, `Android` or `UWP`
-  - `projectPath`: relative path towards the project file of the platform (do not include the project file itself!)
-  - `androidOptions`: extra options for Android; `assetFolderPrefix` can be `mipmap` (default) or `drawable`
-- `assetDefault`:
-  - `pattern`: you can use a file pattern to include for example all files in the `assetsPath`, or you can leave this blank to specify individual files
-  - `size`: in the format `100x100` specifying `width` x `height` as default size for base resolution; can be specified individually
-- `assets`:
-  - `file`: name of the svg file (including extension)
-  - `size`: base resolution (see above for format)
+Name              Type                   Req      Description                                                             
+--------------------------------------------------------------------------------------------------------------------------
+AssetsPath        String                          Relative path where the configuration is towards where the svg files are
+Platforms         PlatformClass[]                 The platform to generate for                                            
+AssetDefault      AssetDefaultClass               Default asset settings                                                  
+Assets            AssetClass[]                    List of assets to generate                                              
 
-If no `size` is set for individual file, the default from `assetDefault` is used.
-If individual asset is set, it's not duplicated when `pattern` is set for `assetDefault`.
+Class: PlatformClass
+--------------------
 
-Upon generation, all png sizes for all resolutions are created in the correct folder for each platform project, and the `.csproj` for each platform project is updated.
+Name                Type                  Req      Description                                                                                  
+------------------------------------------------------------------------------------------------------------------------------------------------
+Type                Platforms (Enum)               Platform                                                                                     
+ProjectPath         String                         Relative path towards the project file of the platform (not the project iself, just the path)
+AndroidOptions      AndroidOptions                 Specific Android options                                                                     
+
+Class: AndroidOptions
+---------------------
+
+Name                   Type                              Req      Description                   
+------------------------------------------------------------------------------------------------
+AssetFolderPrefix      AndroidResourceFolder (Enum)               The folder where resources are
+
+Enum: Platforms
+---------------
+
+Name         Description
+------------------------
+iOS          iOS        
+Android      Android    
+UWP          UWP        
+
+Enum: AndroidResourceFolder
+---------------------------
+
+Name          Description         
+----------------------------------
+mipmap        Use mipmap folders  
+drawable      Use drawable folders
+
+Class: AssetDefaultClass
+------------------------
+
+Name         Type        Req      Description                                                                                                                           
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Pattern      String               You can use a file pattern to include for example all files in the assetsPath, or you can leave this blank to specify individual files
+Size         String               In the format 100x100 specifying width x height as default size for base resolution; can be specified individually                    
+
+Class: AssetClass
+-----------------
+
+Name      Type        Req      Description                               
+-------------------------------------------------------------------------
+File      String               Name of the svg file (including extension)
+Size      String               Base resolution (format 100x100)     
+```

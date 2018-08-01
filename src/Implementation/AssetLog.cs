@@ -2,7 +2,7 @@ using System;
 
 namespace Stefandevo.Genyman.XamarinAssets.Implementation
 {
-	public class AssetLog
+	internal class AssetLog
 	{
 		public string AssetFile { get; set; }
 		public DateTime LastUpdated { get; set; }

@@ -2,7 +2,7 @@
 
 namespace Stefandevo.Genyman.XamarinAssets.Implementation
 {
-	public class NewTemplate : Configuration
+	internal class NewTemplate : Configuration
 	{
 		public NewTemplate()
 		{
@@ -20,7 +20,7 @@ namespace Stefandevo.Genyman.XamarinAssets.Implementation
 					ProjectPath = "YourProject.Droid",
 					AndroidOptions = new AndroidOptions()
 					{
-						AssetFolderPrefix = "mipmap"
+						AssetFolderPrefix = AndroidResourceFolder.mipmap
 					}
 				}
 			};
