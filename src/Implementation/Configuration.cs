@@ -8,12 +8,15 @@ namespace Stefandevo.Genyman.XamarinAssets.Implementation
 	public class Configuration
 	{
 		[Description("Relative path where the configuration is towards where the svg files are")]
+		[Required]
 		public string AssetsPath { get; set; }
 		[Description("The platform to generate for")]
 		public List<PlatformClass> Platforms { get; set; }
+		[Required]
 		[Description("Default asset settings")]
 		public AssetDefaultClass AssetDefault { get; set; }
 		[Description("List of assets to generate")]
+		[Required]
 		public List<AssetClass> Assets { get; set; }
 	}
 
@@ -21,8 +24,10 @@ namespace Stefandevo.Genyman.XamarinAssets.Implementation
 	public class PlatformClass
 	{
 		[Description("Platform")]
+		[Required]
 		public Platforms Type { get; set; }
 		[Description("Relative path towards the project file of the platform (not the project iself, just the path)")]
+		[Required]
 		public string ProjectPath { get; set; }
 		[Description("Specific Android options")]
 		public AndroidOptions AndroidOptions { get; set; }
@@ -68,6 +73,7 @@ namespace Stefandevo.Genyman.XamarinAssets.Implementation
 	public class AssetClass
 	{
 		[Description("Name of the svg file (including extension)")]
+		[Required]
 		public string File { get; set; }
 		[Description("Base resolution (format 100x100)")]
 		public string Size { get; set; }
