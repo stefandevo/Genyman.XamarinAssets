@@ -4,7 +4,7 @@ using Genyman.Core;
 
 namespace Stefandevo.Genyman.XamarinAssets.Implementation
 {
-	[Documentation]
+	[Documentation(Source = "https://github.com/stefandevo/Genyman.XamarinAssets")]
 	public class Configuration
 	{
 		[Description("Relative path where the configuration is towards where the svg files are")]
